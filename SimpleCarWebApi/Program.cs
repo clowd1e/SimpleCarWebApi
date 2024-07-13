@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SimpleCarWebApi.Data;
+using SimpleCarWebApi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddDbContext<CarDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
