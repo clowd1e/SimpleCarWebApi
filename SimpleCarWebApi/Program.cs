@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SimpleCarWebApi.Data;
+using SimpleCarWebApi.Mapper;
 using SimpleCarWebApi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddDbContext<CarDbContext>(options =>
 {
