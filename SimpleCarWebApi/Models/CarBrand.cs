@@ -7,5 +7,12 @@ namespace SimpleCarWebApi.Models
         [Required]
         public string Name { get; set; }
         public IEnumerable<Car> Cars { get; set; }
+
+        public CarBrand() { }
+        public CarBrand(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }

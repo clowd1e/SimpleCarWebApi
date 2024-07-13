@@ -22,5 +22,18 @@ namespace SimpleCarWebApi.Models
         public int CarBrandId { get; set; }
         [Required]
         public CarBrand CarBrand { get; set; }
+
+        public Car() { }
+        public Car(int id, string model, int year, decimal price, string description, double topSpeed, int carBodyType, int carBrandId)
+        {
+            Id = id;
+            Model = model;
+            Year = year;
+            Price = price;
+            Description = description;
+            TopSpeed = topSpeed;
+            CarBodyTypeId = carBodyType;
+            CarBrandId = carBrandId;
+        }
     }
 }
