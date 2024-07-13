@@ -11,11 +11,6 @@ namespace SimpleCarWebApi.Repository
             _context = context;
         }
 
-        public void AddCar(Car car)
-        {
-            _context.Cars.Add(car);
-            _context.SaveChanges();
-        }
         public Car GetCar(int id)
         {
             return _context.Cars.Where(c => c.Id == id).FirstOrDefault();
@@ -56,28 +51,53 @@ namespace SimpleCarWebApi.Repository
             return _context.Cars.Where(c => c.CarBrandId == brandId).ToList();
         }
 
-        public void UpdateCar(Car car)
+        public bool UpdateCar(Car car)
         {
             _context.Cars.Update(car);
-            _context.SaveChanges();
+            return Save();
         }
 
-        public void DeleteCar(int id)
+        public bool DeleteCar(int id)
         {
             _context.Cars.Remove(GetCar(id));
-            _context.SaveChanges();
+            return Save();
         }
 
-        public void DeleteCarBodyType(int id)
+        public bool DeleteCarBodyType(int id)
         {
             _context.CarBodyTypes.Remove(GetCarBodyType(id));
-            _context.SaveChanges();
+            return Save();
         }
 
-        public void DeleteCarBrand(int id)
+        public bool DeleteCarBrand(int id)
         {
             _context.CarBrands.Remove(GetCarBrand(id));
-            _context.SaveChanges();
+            return Save();
+        }
+
+        public bool AddCar(int carBodyTypeId, int carBrandId, Car car)
+        {
+            car.CarBrandId = carBrandId;
+            car.CarBodyTypeId = carBodyTypeId;
+            _context.Cars.Add(car);
+            return Save();
+        }
+
+        public bool AddCarBrand(CarBrand carBrand)
+        {
+            _context.CarBrands.Add(carBrand);
+            return Save();
+        }
+
+        public bool AddCarBodyType(CarBodyType carBodyType)
+        {
+            _context.CarBodyTypes.Add(carBodyType);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            return _context.SaveChanges() > 0;
         }
     }
 }
