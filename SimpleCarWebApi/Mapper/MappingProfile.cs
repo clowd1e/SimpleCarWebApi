@@ -11,6 +11,10 @@ namespace SimpleCarWebApi.Mapper
             CreateMap<Car, CarDto>();
             CreateMap<CarBrand, CarBrandDto>();
             CreateMap<CarBodyType, CarBodyTypeDto>();
+
+            CreateMap<CarDto, Car>();
+            CreateMap<CarBrandDto, CarBrand>();
+            CreateMap<CarBodyTypeDto, CarBodyType>();
         }
     }
 }
